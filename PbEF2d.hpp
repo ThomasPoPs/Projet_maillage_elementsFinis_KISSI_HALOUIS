@@ -71,15 +71,15 @@ void PbEF2d::assemblage(){
                 s += f(x, y)*T.phi(x, y, i); 
             }
              
-            F(I) += (T.air_triangle()*s)/3.; 
+            F(I) += (T.aire()*s)/3.; 
             for(int j = 0; j < 3; j++){
                 int J = l2g(T, j); 
                 std::vector<double> grad_phi_i = T.grad_phi(i); 
                 std::vector<double> grad_phi_j = T.grad_phi(j); 
                 if(J == -1)
-                    F(I) -= g(T.get_sommet(j))*T.air_triangle()*(produit_scalaire(grad_phi_i, grad_phi_j)); 
+                    F(I) -= g(T.get_sommet(j))*T.aire()*(produit_scalaire(grad_phi_i, grad_phi_j)); 
                 else
-                    coefficients.push_back(Triplet(I, J, T.air_triangle()*(produit_scalaire(grad_phi_i, grad_phi_j)))); 
+                    coefficients.push_back(Triplet(I, J, T.aire()*(produit_scalaire(grad_phi_i, grad_phi_j)))); 
             }
 
         }
@@ -175,7 +175,7 @@ double PbEF2d::calcul_erreur(){
             delta_gradphi = add_two_vect(delta_gradphi, new_delta_gradphi); 
         }
 
-        er2 += T.air_triangle() * produit_scalaire(delta_gradphi, delta_gradphi); 
+        er2 += T.aire() * produit_scalaire(delta_gradphi, delta_gradphi); 
     }
 
     erreur = sqrt(er2); 

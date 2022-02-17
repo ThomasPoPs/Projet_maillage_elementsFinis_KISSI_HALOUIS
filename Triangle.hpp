@@ -38,7 +38,7 @@ class Triangle{
         /** Méthodes **/
         Triangle(int id, Point s1, Point s2, Point s3); 
         friend std::ostream& operator<<(std::ostream& out, Triangle& triangle);
-        double air_triangle(); 
+        double aire(); 
         double phi(double x, double y, int i); 
         std::vector<double> grad_phi(int i); 
         std::tuple<double, double> milieu_arete(int k); 
@@ -62,7 +62,7 @@ std::ostream& operator<<(std::ostream& out, Triangle& triangle)
 
 
 
-double Triangle::air_triangle(){
+double Triangle::aire(){
     return ((s3.x-s2.x)*(s1.y-s3.y)-(s3.y-s2.y)*(s1.x-s3.x))/2; 
 }
 
